@@ -28,7 +28,7 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") != "start.dates":
+    if req.get("result").get("action") != "start.date":
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
