@@ -28,15 +28,16 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") != "shipping.cost":
+    if req.get("result").get("action") != "start.dates":
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
-    zone = parameters.get("shipping-zone")
+    country = parameters.get("Offices-Locations")
+    month = parameters.get("Startdates-months")
 
-    cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
+    dates = {'France':'July 3rd', 'UK':'July 3rd or 31st'}
 
-    speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
+    speech = "The possible start-date(-s) for " + country + " in " + month + " are " + str(dates[country])
 
     print("Response:")
     print(speech)
