@@ -33,9 +33,9 @@ def makeWebhookResult(req):
     result = req.get("result")
     parameters = result.get("parameters")
     country = parameters.get("Offices-Locations")
-    #month = parameters.get("Startdates-months")
+    month = parameters.get("Startdates-months")
 
-    dates = {'France':'July 3rd', 'UK':'July 3rd or 31st'}
+    dates = {"France":'July 3rd', "UK":'July 3rd or 31st'}
 
     speech = "The possible start-date(-s) for " + country + " in " + month + " are " + str(dates[country])
 
@@ -47,7 +47,7 @@ def makeWebhookResult(req):
         "displayText": speech,
         #"data": {},
         # "contextOut": [],
-        "source": "apiai-onlinestore-shipping"
+        "source": "apiai-startdates"
     }
 
 
