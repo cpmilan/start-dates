@@ -8,6 +8,9 @@ from flask import Flask
 from flask import request
 from flask import make_response
 
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+
 # Flask app should start in global layout
 app = Flask(__name__)
 
@@ -35,9 +38,52 @@ def makeWebhookResult(req):
     country = parameters.get("Offices-Locations")
     month = parameters.get("Startdates-months")
 
-    dates = {"France":'July 3rd', "UK":'July 3rd or 31st'}
+    # Start gspread module
+    
+json_key = 'gspread-test.json'
+scope = ['https://spreadsheets.google.com/feeds']
 
-    speech = "The possible start-date(-s) for " + country + " in " + month + " are " + str(dates[country])
+credentials = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+
+gc = gspread.authorize(credentials)
+
+spr = gc.open_by_key("1_afG4TmSYG6v1hJxcIWc5hyXMMZbFxXzL9-0856DXmU")
+
+wks = spr.worksheet("Sheet1")
+
+def month_string_to_number(string):
+    m = {
+        'jan': 1,
+        'feb': 2,
+        'mar': 3,
+        'apr':4,
+         'may':5,
+         'jun':6,
+         'jul':7,
+         'aug':8,
+         'sep':9,
+         'oct':10,
+         'nov':11,
+         'dec':12
+        }
+    s = string.strip()[:3].lower()
+
+    try:
+        out = m[s]
+        return out
+    except:
+        raise ValueError('Not a month')
+month_num = month_string_to_number(month)+1
+
+country = wks.find(country)
+
+country_num = country.col
+
+val = wks.cell(month_num,country_num).value
+    
+    #dates = {"France":'July 3rd', "UK":'July 3rd or 31st'}
+
+    speech = "The possible start-date(-s) for " + country + " in " + month + " are " + val + country
 
     print("Response:")
     print(speech)
