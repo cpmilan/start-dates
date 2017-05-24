@@ -35,7 +35,7 @@ def makeWebhookResult(req):
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
-    country = parameters.get("Offices-Locations")
+    location = parameters.get("Offices-Locations")
     month = parameters.get("Startdates-months")
 
     # Start gspread module
@@ -75,7 +75,7 @@ def month_string_to_number(string):
         raise ValueError('Not a month')
 month_num = month_string_to_number(month)+1
 
-country = wks.find(country)
+country = wks.find(location)
 
 country_num = country.col
 
@@ -83,7 +83,7 @@ val = wks.cell(month_num,country_num).value
     
     #dates = {"France":'July 3rd', "UK":'July 3rd or 31st'}
 
-    speech = "The possible start-date(-s) for " + country + " in " + month + " are " + val + country
+    speech = "The possible start-date(-s) for " + location + " in " + month + " are " + val + month
 
     print("Response:")
     print(speech)
