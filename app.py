@@ -10,6 +10,40 @@ from flask import request
 from flask import make_response
 from oauth2client.service_account import ServiceAccountCredentials
 
+json_key = 'gspread-test.json'
+scope = ['https://spreadsheets.google.com/feeds']
+
+credentials = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+
+gc = gspread.authorize(credentials)
+
+spr = gc.open_by_key("1_afG4TmSYG6v1hJxcIWc5hyXMMZbFxXzL9-0856DXmU")
+
+wks = spr.worksheet("Sheet1")
+
+def month_string_to_number(string):
+    m = {
+            'jan': 1,
+            'feb': 2,
+            'mar': 3,
+            'apr':4,
+             'may':5,
+             'jun':6,
+             'jul':7,
+             'aug':8,
+             'sep':9,
+             'oct':10,
+             'nov':11,
+             'dec':12
+            }
+    s = string.strip()[:3].lower()
+
+    try:
+        out = m[s]
+        return out
+    except:
+        raise ValueError('Not a month')
+
 # Flask app should start in global layout
 app = Flask(__name__)
 
@@ -38,40 +72,6 @@ def makeWebhookResult(req):
     month = parameters.get("Startdates-months")
 
     # Start gspread module
-    
-    json_key = 'gspread-test.json'
-    scope = ['https://spreadsheets.google.com/feeds']
-
-    credentials = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
-
-    gc = gspread.authorize(credentials)
-
-    spr = gc.open_by_key("1_afG4TmSYG6v1hJxcIWc5hyXMMZbFxXzL9-0856DXmU")
-
-    wks = spr.worksheet("Sheet1")
-
-    def month_string_to_number(string):
-        m = {
-            'jan': 1,
-            'feb': 2,
-            'mar': 3,
-            'apr':4,
-             'may':5,
-             'jun':6,
-             'jul':7,
-             'aug':8,
-             'sep':9,
-             'oct':10,
-             'nov':11,
-             'dec':12
-            }
-        s = string.strip()[:3].lower()
-
-        try:
-            out = m[s]
-            return out
-        except:
-            raise ValueError('Not a month')
         
     month_num = month_string_to_number(month)+1
 
