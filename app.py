@@ -14,16 +14,16 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 #gspread credentials
 
-json_key = 'gspread-test.json'
-scope = ['https://spreadsheets.google.com/feeds']
+#json_key = 'gspread-test.json'
+#scope = ['https://spreadsheets.google.com/feeds']
 
-credentials = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
+#credentials = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
 
-gc = gspread.authorize(credentials)
+#gc = gspread.authorize(credentials)
 
-spr = gc.open_by_key("1_afG4TmSYG6v1hJxcIWc5hyXMMZbFxXzL9-0856DXmU")
+#spr = gc.open_by_key("1_afG4TmSYG6v1hJxcIWc5hyXMMZbFxXzL9-0856DXmU")
 
-wks = spr.worksheet("Sheet1")
+#wks = spr.worksheet("Sheet1")
 
 
 # Flask app should start in global layout
