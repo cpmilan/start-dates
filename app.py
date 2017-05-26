@@ -11,8 +11,8 @@ from flask import make_response
 # = = = = = = = #
 #NOTE: the below code makes the whole webhook crash...can't understand why -_- #
 
-#import gspread
-#from oauth2client.service_account import ServiceAccountCredentials
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 #gspread credentials
 
