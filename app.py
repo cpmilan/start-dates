@@ -3,46 +3,10 @@
 import urllib
 import json
 import os
-import gspread
 
 from flask import Flask
 from flask import request
 from flask import make_response
-from oauth2client.service_account import ServiceAccountCredentials
-
-json_key = 'gspread-test.json'
-scope = ['https://spreadsheets.google.com/feeds']
-
-credentials = ServiceAccountCredentials.from_json_keyfile_name('client_secret.json', scope)
-
-gc = gspread.authorize(credentials)
-
-spr = gc.open_by_key("1_afG4TmSYG6v1hJxcIWc5hyXMMZbFxXzL9-0856DXmU")
-
-wks = spr.worksheet("Sheet1")
-
-def month_string_to_number(string):
-    m = {
-            'jan': 1,
-            'feb': 2,
-            'mar': 3,
-            'apr':4,
-             'may':5,
-             'jun':6,
-             'jul':7,
-             'aug':8,
-             'sep':9,
-             'oct':10,
-             'nov':11,
-             'dec':12
-            }
-    s = string.strip()[:3].lower()
-
-    try:
-        out = m[s]
-        return out
-    except:
-        raise ValueError('Not a month')
 
 # Flask app should start in global layout
 app = Flask(__name__)
@@ -68,22 +32,12 @@ def makeWebhookResult(req):
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
-    location = parameters.get("Offices-Locations")
+    country = parameters.get("Offices-Locations")
     month = parameters.get("Startdates-months")
 
-    # Start gspread module
-        
-    #month_num = month_string_to_number(month)+1
+    dates = {"France":'July 3rd', "UK":'July 3rd or 31st'}
 
-    #country = wks.find(location)
-
-    #country_num = country.col
-
-    #start_date = wks.cell(month_num,country_num).value
-    
-    #dates = {"France":'July 3rd', "UK":'July 3rd or 31st'}
-
-    speech = "The possible start-date(-s) for " + location + " in " + month + " are June 3rd." + #start_date + " " + month
+    speech = "The possible start-date(-s) for " + country + " in " + month + " are " + str(dates[country])
 
     print("Response:")
     print(speech)
