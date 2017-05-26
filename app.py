@@ -8,7 +8,8 @@ from flask import Flask
 from flask import request
 from flask import make_response
 
-#gspread imports
+# = = = = = = = #
+#NOTE: the below code makes the whole webhook crash...can't understand why -_- #
 
 #import gspread
 #from oauth2client.service_account import ServiceAccountCredentials
@@ -26,6 +27,7 @@ from flask import make_response
 
 #wks = spr.worksheet("Sheet1")
 
+# = = = = = = = #
 
 # Flask app should start in global layout
 app = Flask(__name__)
