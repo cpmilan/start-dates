@@ -9,7 +9,8 @@ from flask import request
 from flask import make_response
 
 #gspread imports
-import gspread
+
+#import gspread
 #from oauth2client.service_account import ServiceAccountCredentials
 
 #gspread credentials
