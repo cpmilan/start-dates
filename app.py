@@ -95,8 +95,8 @@ def makeWebhookResult(req):
     
     if candidate_type == "External":
         speech = candidate_type + " candidates can start on " + month + start_date + " in " + location + "."
-        else:
-            speech = "Internal geo-transfers into/within EMEA can start any Monday, except if they change bonus plan (1st of the month)."
+    else:
+        speech = "Internal geo-transfers into/within EMEA can start any Monday, except if they change bonus plan (1st of the month)."
     
 
     print("Response:")
