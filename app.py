@@ -80,7 +80,13 @@ def makeWebhookResult(req):
     candidate_type = parameters.get("candidate_type_Int_Ext")
     
     if candidate_type == "Internal":
-        speech = "Geo-transfers within/into EMEA can start any Monday."
+        return {
+        "speech": "Geo-transfers within/into EMEA can start any Monday.",
+        "displayText": "Geo-transfers within/into EMEA can start any Monday.",
+        #"data": {},
+        # "contextOut": [],
+        "source": "apiai-startdates"
+    }
     
     #get the row number for given month
     month_num = month_string_to_number(month)+1
