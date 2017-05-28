@@ -77,7 +77,7 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     location = parameters.get("Offices-Locations")
     month = parameters.get("Startdates-months")
-    candidate_type = parameters.get("candidate_type_Int_Ext")
+    #candidate_type = parameters.get("candidate_type_Int_Ext")
     
     #if candidate_type == "Internal":
     #    return {
