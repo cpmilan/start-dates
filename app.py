@@ -77,6 +77,7 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     location = parameters.get("Offices-Locations")
     month = parameters.get("Startdates-months")
+    candidate_type = parameters.get("candidate_type_Int_Ext")
     
     #get the row number for given month
     month_num = month_string_to_number(month)+1
@@ -91,8 +92,12 @@ def makeWebhookResult(req):
     start_date = wks.cell(month_num,country_num).value
 
     #dates = {"France":'July 3rd', "UK":'July 3rd or 31st'}
-
-    speech = "External candidates can start on " + month + start_date + " in " + location + "."
+    
+    if candidate_type == "External":
+        speech = candidate_type + " candidates can start on " + month + start_date + " in " + location + "."
+        else:
+            speech = "Internal geo-transfers into/within EMEA can start any Monday, except if they change bonus plan (1st of the month)."
+    
 
     print("Response:")
     print(speech)
