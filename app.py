@@ -77,16 +77,6 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     location = parameters.get("Offices-Locations")
     month = parameters.get("Startdates-months")
-    #candidate_type = parameters.get("candidate_type_Int_Ext")
-    
-    #if candidate_type == "Internal":
-    #    return {
-    #    "speech": "Geo-transfers within/into EMEA can start any Monday.",
-    #    "displayText": "Geo-transfers within/into EMEA can start any Monday.",
-    #    #"data": {},
-    #    # "contextOut": [],
-    #    "source": "apiai-startdates"
-    #}
     
     #get the row number for given month
     month_num = month_string_to_number(month)+1
