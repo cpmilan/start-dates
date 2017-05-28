@@ -96,7 +96,7 @@ def makeWebhookResult(req):
 
     #dates = {"France":'July 3rd', "UK":'July 3rd or 31st'}
 
-    speech = "The possible start-date(-s) for " + location + " in " + month + " is " + start_date
+    speech = "The possible start-date(-s) for " + location + " in " + month + " is " + month + " the " + start_date
 
     print("Response:")
     print(speech)
