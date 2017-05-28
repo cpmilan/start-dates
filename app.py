@@ -102,7 +102,7 @@ def makeWebhookResult(req):
 
     #dates = {"France":'July 3rd', "UK":'July 3rd or 31st'}
 
-    speech = candidate_type " candidates can start on " + month + start-date + " in " location + "."
+    speech = "External candidates can start on " + month + start_date + " in " location + "."
 
     print("Response:")
     print(speech)
