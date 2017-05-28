@@ -1,7 +1,7 @@
 {
   "name": "API.AI Start Dates Webhook",
   "description": "AAPI.AI Start Dates Webhook Sample",
-  "repository": "https://github.com/cpmilan/shipping-costs-sample",
+  "repository": "https://github.com/cpmilan/start-dates-sample",
   "logo": "http://xvir.github.io/img/apiai.png",
   "keywords": ["api.ai", "natural language"]
 }
