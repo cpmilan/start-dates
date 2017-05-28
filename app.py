@@ -3,15 +3,11 @@
 import urllib
 import json
 import os
+import gspread
 
 from flask import Flask
 from flask import request
 from flask import make_response
-
-# = = = = = = = #
-#NOTE: the below code makes the whole webhook crash...can't understand why -_- #
-
-import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 
 #gspread credentials
@@ -81,6 +77,10 @@ def makeWebhookResult(req):
     parameters = result.get("parameters")
     location = parameters.get("Offices-Locations")
     month = parameters.get("Startdates-months")
+    candidate_type = parameters.get("candidate_type_Int_Ext")
+    
+    if candidate_type == "Internal":
+        speech = "Geo-transfers within/into EMEA can start any Monday."
     
     #get the row number for given month
     month_num = month_string_to_number(month)+1
@@ -96,7 +96,7 @@ def makeWebhookResult(req):
 
     #dates = {"France":'July 3rd', "UK":'July 3rd or 31st'}
 
-    speech = "The possible start-date(-s) for " + location + " in " + month + " is " + month + " the " + start_date
+    speech = "External candidates can start on " + month + start-date + " in " location + "."
 
     print("Response:")
     print(speech)
