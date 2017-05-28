@@ -79,14 +79,14 @@ def makeWebhookResult(req):
     month = parameters.get("Startdates-months")
     candidate_type = parameters.get("candidate_type_Int_Ext")
     
-    if candidate_type == "Internal":
-        return {
-        "speech": "Geo-transfers within/into EMEA can start any Monday.",
-        "displayText": "Geo-transfers within/into EMEA can start any Monday.",
-        #"data": {},
-        # "contextOut": [],
-        "source": "apiai-startdates"
-    }
+    #if candidate_type == "Internal":
+    #    return {
+    #    "speech": "Geo-transfers within/into EMEA can start any Monday.",
+    #    "displayText": "Geo-transfers within/into EMEA can start any Monday.",
+    #    #"data": {},
+    #    # "contextOut": [],
+    #    "source": "apiai-startdates"
+    #}
     
     #get the row number for given month
     month_num = month_string_to_number(month)+1
@@ -102,7 +102,7 @@ def makeWebhookResult(req):
 
     #dates = {"France":'July 3rd', "UK":'July 3rd or 31st'}
 
-    speech = "External candidates can start on " + month + start-date + " in " location + "."
+    speech = candidate_type " candidates can start on " + month + start-date + " in " location + "."
 
     print("Response:")
     print(speech)
